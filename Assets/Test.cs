@@ -28,16 +28,16 @@ public class Test : MonoBehaviour
 	void Start()
 	{
 		m_cancel = new CancellationTokenSource().Token; // Is this needed?
-		Task<ClientWebSocket> create = CreateAndConnect("ws://echo.websocket.org", m_cancel);
+		Task<ClientWebSocket> create = CreateAndConnect("wss://echo.websocket.org", m_cancel);
 		create.ContinueWith(task => m_socket = task.Result);
 	}
 
 
 
-	private async Task<ClientWebSocket> CreateAndConnect (string uri, CancellationToken cancel)
+	private async Task<ClientWebSocket> CreateAndConnect (string uriStr, CancellationToken cancel)
 	{
 		ClientWebSocket client = new ClientWebSocket();
-		var connect = client.ConnectAsync(new System.Uri("wss://echo.websocket.org"), cancel);
+		var connect = client.ConnectAsync(new System.Uri(uriStr), cancel);
 		await connect;
 		return client;
 	}
