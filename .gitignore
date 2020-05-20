@@ -3,6 +3,7 @@ Library
 Logs
 obj
 Temp
+Builds
 *.csproj
 *.csproj.user
 *.sln
